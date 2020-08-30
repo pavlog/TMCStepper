@@ -201,6 +201,7 @@ void TMC2208Stepper::write(uint8_t addr, uint32_t regVal) {
 	delay(replyDelay);
 }
 
+#if SW_CAPABLE_PLATFORM
 uint64_t TMC2208Stepper::_sendDatagram(uint8_t datagram[], const uint8_t len, uint16_t timeout) {
 	while (available() > 0) serial_read(); // Flush
 
@@ -277,6 +278,7 @@ uint64_t TMC2208Stepper::_sendDatagram(uint8_t datagram[], const uint8_t len, ui
 
 	return out;
 }
+#endif
 
 uint32_t TMC2208Stepper::read(uint8_t addr) {
 	constexpr uint8_t len = 3;

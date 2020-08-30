@@ -13,6 +13,7 @@
 #include <Stream.h>
 #include <SPI.h>
 
+#ifndef SOFTWARE_SERIAL_DISABLE 
 #if (__cplusplus == 201703L) && defined(__has_include)
 	#define SW_CAPABLE_PLATFORM __has_include(<SoftwareSerial.h>)
 #elif defined(__AVR__) || defined(TARGET_LPC1768) || defined(ARDUINO_ARCH_STM32)
@@ -23,6 +24,9 @@
 
 #if SW_CAPABLE_PLATFORM
 	#include <SoftwareSerial.h>
+#endif
+#else
+#define SW_CAPABLE_PLATFORM false
 #endif
 
 #include "source/SERIAL_SWITCH.h"
